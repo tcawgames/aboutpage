@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>tcaw // links</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --accent: #39ff14;
+    --accent-dim: #1c8a0a;
+    --glow: rgba(57,255,20,0.55);
+    --glow-soft: rgba(57,255,20,0.18);
+    --bg: #060907;
+    --bg-2: #0b120d;
+    --panel: rgba(15, 24, 17, 0.65);
+    --border: rgba(57,255,20,0.28);
+    --text-dim: #8fae94;
+  }
+  *{ box-sizing:border-box; }
+  html,body{
+    margin:0; padding:0; min-height:100%;
+    background: var(--bg);
+    color: var(--accent);
+    font-family:'Rajdhani', sans-serif;
+    overflow-x:hidden;
+  }
+  body{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    background: radial-gradient(circle at 50% 0%, var(--bg-2) 0%, var(--bg) 60%);
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(rgba(57,255,20,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(57,255,20,0.035) 1px, transparent 1px);
+    background-size: 42px 42px;
+    pointer-events:none;
+    z-index:0;
+    animation: gridDrift 30s linear infinite;
+  }
+  @keyframes gridDrift{ 0%{background-position:0 0,0 0;} 100%{background-position:0 400px,400px 0;} }
+  body::after{
+    content:"";
+    position:fixed; inset:0;
+    background: repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 2px, rgba(0,0,0,0.10) 3px);
+    pointer-events:none;
+    z-index:2;
+    mix-blend-mode:overlay;
+  }
+  .wrap{
+    position:relative; z-index:1; width:100%; max-width:560px;
+    padding: 48px 20px 80px; display:flex; flex-direction:column; align-items:center;
+  }
+  .fade{ opacity:0; transform: translateY(24px); animation: fadeUp 0.9s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes fadeUp{ to{ opacity:1; transform:translateY(0); } }
+  .fade-1{ animation-delay: .1s; }
+  .fade-2{ animation-delay: .55s; }
+  .fade-3{ animation-delay: 1.0s; }
+  .fade-4{ animation-delay: 1.45s; }
+  .fade-5{ animation-delay: 1.9s; }
+  .themes{ display:flex; gap:10px; margin-bottom:34px; }
+  .theme-dot{
+    width:30px; height:30px; border-radius:8px; border:1px solid rgba(255,255,255,0.15);
+    cursor:pointer; position:relative; background: var(--dot-color);
+    box-shadow: 0 0 10px var(--dot-color), inset 0 0 6px rgba(0,0,0,0.4);
+    transition: transform .2s ease;
+  }
+  .theme-dot:hover{ transform: scale(1.12); }
+  .theme-dot.active{ border-color:#fff; transform: scale(1.15); }
+  .theme-label{
+    position:absolute; bottom:-20px; left:50%; transform:translateX(-50%);
+    font-size:9px; letter-spacing:1px; text-transform:uppercase; color: var(--text-dim);
+    white-space:nowrap; font-family:'Share Tech Mono', monospace;
+  }
+  .hero{ display:flex; flex-direction:column; align-items:center; text-align:center; margin-bottom:30px; }
+  .avatar-frame{
+    width:150px; height:150px; border-radius:26px; overflow:hidden;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 18px var(--glow), 0 0 50px var(--glow-soft), inset 0 0 20px rgba(0,0,0,0.5);
+    margin-bottom:22px; position:relative;
+  }
+  .avatar-frame img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .big-name{
+    font-family:'Share Tech Mono', monospace;
+    font-size: clamp(56px, 16vw, 92px);
+    letter-spacing: 6px; line-height:1; color: var(--accent);
+    text-shadow: 0 0 8px var(--glow), 0 0 26px var(--glow-soft), 0 0 60px var(--glow-soft);
+    position:relative; margin:0; user-select:none;
+  }
+  .big-name::before, .big-name::after{
+    content:"tcaw"; position:absolute; left:0; top:0; width:100%;
+    color: var(--accent); background: transparent; overflow:hidden; opacity:0;
+  }
+  @keyframes glitchTop{
+    0%,92%,100%{ opacity:0; transform:translate(0,0); }
+    93%{ opacity:.7; transform:translate(-3px,-2px); clip-path: inset(0 0 60% 0); }
+    95%{ opacity:.7; transform:translate(2px,1px); clip-path: inset(20% 0 40% 0); }
+    97%{ opacity:0; }
+  }
+  @keyframes glitchBottom{
+    0%,92%,100%{ opacity:0; transform:translate(0,0); }
+    93%{ opacity:.6; transform:translate(3px,2px); clip-path: inset(60% 0 0 0); }
+    95%{ opacity:.6; transform:translate(-2px,-1px); clip-path: inset(40% 0 20% 0); }
+    97%{ opacity:0; }
+  }
+  .big-name::before{ color:#ff2965; animation: glitchTop 5s infinite; mix-blend-mode: screen;}
+  .big-name::after{ color:#00e5ff; animation: glitchBottom 5s infinite; mix-blend-mode: screen; animation-delay: .15s;}
+  .tagline{
+    font-family:'Share Tech Mono', monospace; font-size:12px; letter-spacing:3px;
+    text-transform:uppercase; color: var(--text-dim); margin-top:14px;
+  }
+  .discord-card{
+    width:100%; background: var(--panel); border: 1px solid var(--border); border-radius:20px;
+    padding:22px; display:flex; flex-direction:column; align-items:center; text-align:center;
+    text-decoration:none; backdrop-filter: blur(6px); box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    margin-bottom:26px; position:relative;
+    transition: box-shadow .3s ease, border-color .3s ease, transform .2s ease;
+  }
+  .discord-card:hover{
+    border-color: var(--accent);
+    box-shadow: 0 0 24px var(--glow-soft), 0 8px 30px rgba(0,0,0,0.5);
+    transform: translateY(-2px);
+  }
+  .discord-eyebrow{
+    font-family:'Share Tech Mono', monospace; font-size:10px; letter-spacing:3px;
+    color: var(--accent-dim); text-transform:uppercase; margin-bottom:16px;
+  }
+  .server-img{
+    width:76px; height:76px; border-radius:18px; object-fit:cover;
+    border:2px solid var(--accent); box-shadow: 0 0 14px var(--glow); margin-bottom:14px;
+  }
+  .server-name{
+    font-family:'Share Tech Mono', monospace; font-size:19px; letter-spacing:1px;
+    color: var(--accent); text-shadow: 0 0 10px var(--glow); margin:0 0 10px 0;
+  }
+  .server-desc{ font-size:14.5px; line-height:1.5; color: #cfe8d2; max-width:400px; margin:0 0 18px 0; }
+  .join-btn{
+    font-family:'Share Tech Mono', monospace; font-size:13px; letter-spacing:2px;
+    text-transform:uppercase; color: var(--bg); background: var(--accent);
+    padding:12px 28px; border-radius:10px; box-shadow: 0 0 16px var(--glow);
+    transition: filter .2s ease, transform .2s ease;
+  }
+  .discord-card:hover .join-btn{ filter: brightness(1.15); transform: scale(1.03); }
+  .socials-title{
+    font-family:'Share Tech Mono', monospace; font-size:10px; letter-spacing:3px;
+    text-transform:uppercase; color: var(--text-dim); margin-bottom:16px;
+  }
+  .socials{ width:100%; display:flex; flex-direction:column; gap:12px; }
+  .social-link{
+    display:flex; align-items:center; gap:14px; width:100%; padding:14px 18px;
+    background: var(--panel); border:1px solid var(--border); border-radius:14px;
+    text-decoration:none; color: var(--accent); font-family:'Rajdhani', sans-serif;
+    font-weight:600; font-size:15px; letter-spacing:0.5px;
+    transition: border-color .25s ease, box-shadow .25s ease, transform .15s ease, background .25s ease;
+  }
+  .social-link:hover{
+    border-color: var(--accent); box-shadow: 0 0 18px var(--glow-soft);
+    transform: translateX(4px); background: rgba(57,255,20,0.06);
+  }
+  .social-link svg{ width:22px; height:22px; flex-shrink:0; fill: var(--accent); filter: drop-shadow(0 0 6px var(--glow)); }
+  .social-handle{ color: var(--text-dim); font-size:12px; margin-left:auto; font-family:'Share Tech Mono', monospace; letter-spacing:0.5px; }
+  footer{ margin-top:40px; font-family:'Share Tech Mono', monospace; font-size:10px; letter-spacing:2px; color: var(--text-dim); opacity:0.6; text-align:center; }
+  @media (prefers-reduced-motion: reduce){
+    .fade{ animation:none !important; opacity:1 !important; transform:none !important; }
+    .big-name::before, .big-name::after{ animation:none !important; }
+    body::before{ animation:none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="themes fade fade-1">
+    <div class="theme-dot active" style="--dot-color:#39ff14" data-accent="#39ff14" data-dim="#1c8a0a" onclick="setTheme(this)"><span class="theme-label">Glitched</span></div>
+    <div class="theme-dot" style="--dot-color:#00e5ff" data-accent="#00e5ff" data-dim="#0a7c8a" onclick="setTheme(this)"><span class="theme-label">Cyberspace</span></div>
+    <div class="theme-dot" style="--dot-color:#b24bf3" data-accent="#b24bf3" data-dim="#6a1c8a" onclick="setTheme(this)"><span class="theme-label">Dreamspace</span></div>
+    <div class="theme-dot" style="--dot-color:#ffd23f" data-accent="#ffd23f" data-dim="#8a6d0a" onclick="setTheme(this)"><span class="theme-label">Singularity</span></div>
+  </div>
+
+  <div class="hero fade fade-2">
+    <div class="avatar-frame">
+      <img src="https://i.pinimg.com/originals/eb/47/92/eb4792a5a58e61aa9a673771e44cde30.gif" alt="tcaw">
+    </div>
+    <h1 class="big-name">tcaw</h1>
+    <div class="tagline">rare biome hunter // sol's rng</div>
+  </div>
+
+  <a class="discord-card fade fade-3" href="https://discord.gg/cA6zzKHAKT" target="_blank" rel="noopener">
+    <div class="discord-eyebrow">discord server</div>
+    <img class="server-img" src="https://i.ibb.co/HTVfsdcW/image.png" alt="Tcaw Glitch Hunt">
+    <h2 class="server-name">Tcaw Glitch Hunt</h2>
+    <p class="server-desc">Sol's RNG Rare Biome Hunting Server Where We Hunt For Glitched, Dreamspace, Cyberspace, and Singularity!</p>
+    <span class="join-btn">Join Server</span>
+  </a>
+
+  <div class="socials-title fade fade-4">elsewhere</div>
+  <div class="socials fade fade-4">
+    <a class="social-link" href="https://www.youtube.com/@TclawsRBLX" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.6 12 3.6 12 3.6s-7.6 0-9.4.5A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.5 9.4.5 9.4.5s7.6 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12l-6.2 3.5Z"/></svg>
+      YouTube
+      <span class="social-handle">@TclawsRBLX</span>
+    </a>
+    <a class="social-link" href="https://www.tiktok.com/@tclawsrblx" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M16.6 0h-3.3v15.2c0 1.6-1.3 3-3 3s-3-1.4-3-3 1.3-3 3-3c.3 0 .6 0 .9.1V8.9c-.3 0-.6-.1-.9-.1-3.6 0-6.5 2.9-6.5 6.4S8.7 21.6 12.3 21.6s6.4-2.9 6.4-6.4V7.9c1.3 1 2.9 1.5 4.6 1.5V6.1c-2.6 0-4.7-2.1-4.7-4.7V0h-2Z"/></svg>
+      TikTok
+      <span class="social-handle">@tclawsrblx</span>
+    </a>
+    <a class="social-link" href="https://github.com/tcawgames" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.7-1.4-1.7-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.3-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.4 1.2a11.6 11.6 0 0 1 6.2 0C17.9 5 19 5.3 19 5.3c.7 1.6.3 2.9.1 3.2.8.9 1.3 2 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3Z"/></svg>
+      GitHub
+      <span class="social-handle">tcawgames</span>
+    </a>
+    <a class="social-link" href="https://discord.com/users/851596098840952843" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3c-.2.4-.5 1-.7 1.4a18.3 18.3 0 0 0-5.4 0c-.2-.4-.5-1-.7-1.4-1.7.3-3.3.8-4.9 1.5C1 8.9.3 13.3.6 17.6a20 20 0 0 0 6 3c.5-.7.9-1.4 1.3-2.2-.7-.3-1.4-.6-2-1 .2-.1.3-.3.5-.4a14.3 14.3 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1 .4.8.8 1.5 1.3 2.2a20 20 0 0 0 6-3c.4-5-.9-9.4-3.1-13.2ZM8.7 14.9c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z"/></svg>
+      Discord
+      <span class="social-handle">tcaw</span>
+    </a>
+    <a class="social-link" href="https://www.roblox.com/users/1633670490/profile" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M4.9 0 0 19.1 19.1 24 24 4.9 4.9 0Zm9.4 15.9-6.2-1.7 1.7-6.2 6.2 1.7-1.7 6.2Z"/></svg>
+      Roblox
+      <span class="social-handle">@tcaw</span>
+    </a>
+  </div>
+
+  <footer class="fade fade-5">// hunting glitched · dreamspace · cyberspace · singularity //</footer>
+</div>
+
+<script>
+  function setTheme(el){
+    document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
+    el.classList.add('active');
+    const accent = el.getAttribute('data-accent');
+    const dim = el.getAttribute('data-dim');
+    const root = document.documentElement;
+    root.style.setProperty('--accent', accent);
+    root.style.setProperty('--accent-dim', dim);
+    root.style.setProperty('--glow', hexToRgba(accent, 0.55));
+    root.style.setProperty('--glow-soft', hexToRgba(accent, 0.18));
+    root.style.setProperty('--border', hexToRgba(accent, 0.28));
+  }
+  function hexToRgba(hex, alpha){
+    const r = parseInt(hex.slice(1,3),16);
+    const g = parseInt(hex.slice(3,5),16);
+    const b = parseInt(hex.slice(5,7),16);
+    return `rgba(${r},${g},${b},${alpha})`;
+  }
+</script>
+</body>
+</html>
